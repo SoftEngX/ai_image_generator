@@ -1,0 +1,41 @@
+@import url('https://fonts.googleapis.com/css2?family=Bitcount+Prop+Single+Ink:wght@100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=League+Spartan:wght@100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+    font-family: "Inter", sans-serif;
+
+}
+
+:root {
+  --color-primary: #4a90e2;
+  --color-primary-dark: #357ABD;
+  --color-background: #f5f7fa;
+  --color-accent: #ff6f61;
+  --color-text: #333333;
+  --color-border: #dddddd;
+  --color-input: #f1f1ff;
+  --color-card: #ffffff;
+  --color-placeholder: #999999;
+  --color-gradient: linear-gradient(135deg, #6b73ff 0%, #000dff 100%);
+}
+
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 15px;
+  color: var(--color-text);
+  background: linear-gradient(135deg, #ece9e6 0%, #ffffff 100%);
+}
+
+.container {
+  width: 900px;
+  padding: 32px;
+  border-radius: 23px;
+  background: var(--color-card);
+  box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.1);
+}
