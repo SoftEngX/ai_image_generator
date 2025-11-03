@@ -219,3 +219,9 @@ body {
   transform: translateY(-2px);
   box-shadow: 0 4px 10px  rgba(109, 40, 217, 0.3);
 }
+
+.gallery-grid .img-card img {
+  width: 40%;
+  border-radius: 15px;
+  object-fit: cover;
+}
