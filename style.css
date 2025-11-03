@@ -207,6 +207,7 @@ body {
 .prompt-actions .generate-btn {
   display: flex;
   gap: 12px;
+  margin-left: auto;
   color: #fff;
   font-weight: 500;
   justify-content: center;
@@ -245,7 +246,7 @@ body {
   transition: all 0.5s ease;
 }
 
-.gallery-grid .img-card:hover {
+.gallery-grid .img-card:not(.loading):hover {
   transform: translateY(-5px);
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
 }
@@ -254,6 +255,10 @@ body {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+.gallery-grid .img-card.loading :is(.result-img, .img-overlay){
+  display: none;
 }
 
 
