@@ -203,7 +203,6 @@ body {
   box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1);
 }
 
-
 .prompt-actions .generate-btn {
   display: flex;
   gap: 12px;
@@ -260,7 +259,6 @@ body {
 .gallery-grid .img-card.loading :is(.result-img, .img-overlay){
   display: none;
 }
-
 
 .gallery-grid .img-card .img-overlay {
   position: absolute;
