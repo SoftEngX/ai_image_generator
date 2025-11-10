@@ -29,7 +29,7 @@ body {
   min-height: 100vh;
   padding: 15px;
   color: var(--color-text);
-  background: linear-gradient(135deg, #ece9e6 0%, #ffffff 100%);
+  background: linear-gradient(135deg, #ece9e6 0%, #9ca7f1 100%);
 }
 
 .container {
