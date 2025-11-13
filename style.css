@@ -315,9 +315,14 @@ body {
   display: flex;
 }
 
-.gallery-grid .img-card.loading .spinner,
-.gallery-grid .img-card.error .status-container {
-  display: block;
+.gallery-grid .img-card.loading .status-container i,
+.gallery-grid .img-card.error .spinner {
+  display: none;
+}
+
+.gallery-grid .img-card.error .status-container i {
+  font-size: 1.7rem;
+  color: #ef4444;
 }
 
 .gallery-grid .img-card.loading .spinner {
