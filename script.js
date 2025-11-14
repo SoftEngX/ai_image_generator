@@ -41,6 +41,15 @@ const toggleTheme = () => {
   themeToggle.querySelector('i').className = isDarkTheme ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
 };
 
+const generateImages = (
+  selectedModel,
+  imageCount,
+  aspectRatio,
+  promptText
+) => {
+  const MODEL_URL = ``;
+};
+
 // Create placeholder cards with loading spinners
 const createImageCards = (selectedModel, imageCount, aspectRatio, promptText) => {
   gridCallery.innerHTML = '';
@@ -55,6 +64,8 @@ const createImageCards = (selectedModel, imageCount, aspectRatio, promptText) =>
             <img src="images/test.png" class="result-img">
           </div>`;
   }
+
+  generateImages(selectedModel, imageCount, aspectRatio, promptText);
 }
 
 const handleFormSubmit = (e) => {
