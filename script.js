@@ -1,6 +1,6 @@
 const themeToggle = document.querySelector('.theme-toggle');
-const promptInput = document.querySelector(".prompt-input");
-const promptBtn = document.querySelector(".prompt-btn");
+const promptInput = document.querySelector('.prompt-input');
+const promptBtn = document.querySelector('.prompt-btn');
 
 const examplePrompts = [
   "A magic forest with glowing plants and fairy homes among giant mushrooms",
@@ -22,7 +22,7 @@ const examplePrompts = [
 
 (() => {
   const savedTheme = localStorage.getItem('theme');
-  const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  const systemPrefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
 
   const isDarkTheme = savedTheme === 'dark' || (!savedTheme && systemPrefersDark);
   document.body.classList.toggle('dark-theme', isDarkTheme);
@@ -34,12 +34,12 @@ const toggleTheme = () => {
   const isDarkTheme = document.body.classList.toggle('dark-theme');
   localStorage.setItem('theme', isDarkTheme ? 'dark' : 'light');
   themeToggle.querySelector('i').className = isDarkTheme ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
-}
+};
 
 promptBtn.addEventListener('click', () => {
   const prompt = examplePrompts[Math.floor(Math.random() * examplePrompts.length)];
   promptInput.value = prompt;
   promptInput.focus();
-})
+});
 
 themeToggle.addEventListener('click', toggleTheme);
