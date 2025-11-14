@@ -1,6 +1,11 @@
 const themeToggle = document.querySelector('.theme-toggle');
-const promptInput = document.querySelector('.prompt-input');
+const promptForm = document.querySelector('.prompt-form');
+const promptInput = document.querySelector(".prompt-input");
 const promptBtn = document.querySelector('.prompt-btn');
+const modelSelect = document.getElementById("model-select");
+const countSelect = document.getElementById("count-select");
+const ratioSelect = document.getElementById("ratio-select");
+const gridCallery = document.querySelector(".gallery-grid");
 
 const examplePrompts = [
   "A magic forest with glowing plants and fairy homes among giant mushrooms",
@@ -36,10 +41,38 @@ const toggleTheme = () => {
   themeToggle.querySelector('i').className = isDarkTheme ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
 };
 
+// Create placeholder cards with loading spinners
+const createImageCards = (selectedModel, imageCount, aspectRatio, promptText) => {
+  gridCallery.innerHTML = '';
+
+  for (let i = 0; i < imageCount; i++) {
+    gridCallery.innerHTML += `<div class="img-card loading" id="img-card-${i}" style="aspect-ratio: ${aspectRatio}">
+            <div class="status-container">
+              <div class="spinner"></div>
+              <i class="fa-solid fa-triangle-exclamation"></i>
+              <p class="status-text">Generating...</p>
+            </div>
+            <img src="images/test.png" class="result-img">
+          </div>`;
+  }
+}
+
+const handleFormSubmit = (e) => {
+  e.preventDefault();
+
+  const selectedModel = modelSelect.value;
+  const imageCount = parseInt(countSelect.value) || 1;
+  const aspectRatio = ratioSelect.value || '1/1';
+  const promptText = promptInput.value.trim();
+
+  createImageCards(selectedModel, imageCount, aspectRatio, promptText);
+}
+
 promptBtn.addEventListener('click', () => {
   const prompt = examplePrompts[Math.floor(Math.random() * examplePrompts.length)];
   promptInput.value = prompt;
   promptInput.focus();
 });
 
+promptForm.addEventListener('submit', handleFormSubmit);
 themeToggle.addEventListener('click', toggleTheme);
