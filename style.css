@@ -211,6 +211,7 @@ body.dark-theme .container {
   outline: none;
   height: 100%;
   appearance: none;
+  color: var(--color-text);
 }
 
 .prompt-actions .custom-select:is(:focus, :hover) {
