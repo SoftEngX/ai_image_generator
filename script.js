@@ -41,13 +41,19 @@ const toggleTheme = () => {
   themeToggle.querySelector('i').className = isDarkTheme ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
 };
 
-const generateImages = (
+const generateImages = async (
   selectedModel,
   imageCount,
   aspectRatio,
   promptText
 ) => {
-  const MODEL_URL = ``;
+  const MODEL_URL = `https://api-inference.huggingface.co/models/${selectedModel}`;
+
+  try {
+    const response = await fetch();
+  } catch (error)  {
+    console.log(error);
+  }
 };
 
 // Create placeholder cards with loading spinners
