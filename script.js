@@ -50,7 +50,15 @@ const generateImages = async (
   const MODEL_URL = `https://api-inference.huggingface.co/models/${selectedModel}`;
 
   try {
-    const response = await fetch();
+    const response = await fetch(MODEL_URL, {
+      headers: { 
+        Authorization: "Bearer hf_***",
+        "Content-Type": "application/json"
+      },
+      method: "POST",
+      body: JSON.stringify(data)({
+      
+    });
   } catch (error)  {
     console.log(error);
   }
