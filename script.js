@@ -1,11 +1,13 @@
-const themeToggle = document.querySelector('.theme-toggle');
-const promptForm = document.querySelector('.prompt-form');
+const themeToggle = document.querySelector(".theme-toggle");
+const promptForm = document.querySelector(".prompt-form");
 const promptInput = document.querySelector(".prompt-input");
-const promptBtn = document.querySelector('.prompt-btn');
+const promptBtn = document.querySelector(".prompt-btn");
 const modelSelect = document.getElementById("model-select");
 const countSelect = document.getElementById("count-select");
 const ratioSelect = document.getElementById("ratio-select");
 const gridCallery = document.querySelector(".gallery-grid");
+
+const API_KEY = process.env.API_KEY; //Hugging Face API key
 
 const examplePrompts = [
   "A magic forest with glowing plants and fairy homes among giant mushrooms",
@@ -26,19 +28,25 @@ const examplePrompts = [
 ];
 
 (() => {
-  const savedTheme = localStorage.getItem('theme');
-  const systemPrefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+  const savedTheme = localStorage.getItem("theme");
+  const systemPrefersDark = window.matchMedia(
+    "(prefers-color-scheme: dark)"
+  ).matches;
 
-  const isDarkTheme = savedTheme === 'dark' || (!savedTheme && systemPrefersDark);
-  document.body.classList.toggle('dark-theme', isDarkTheme);
-  themeToggle.querySelector('i').className = isDarkTheme ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
+  const isDarkTheme =
+    savedTheme === "dark" || (!savedTheme && systemPrefersDark);
+  document.body.classList.toggle("dark-theme", isDarkTheme);
+  themeToggle.querySelector("i").className = isDarkTheme
+    ? "fa-solid fa-sun"
+    : "fa-solid fa-moon";
 })();
 
-
 const toggleTheme = () => {
-  const isDarkTheme = document.body.classList.toggle('dark-theme');
-  localStorage.setItem('theme', isDarkTheme ? 'dark' : 'light');
-  themeToggle.querySelector('i').className = isDarkTheme ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
+  const isDarkTheme = document.body.classList.toggle("dark-theme");
+  localStorage.setItem("theme", isDarkTheme ? "dark" : "light");
+  themeToggle.querySelector("i").className = isDarkTheme
+    ? "fa-solid fa-sun"
+    : "fa-solid fa-moon";
 };
 
 const generateImages = async (
@@ -50,25 +58,33 @@ const generateImages = async (
   const MODEL_URL = `https://api-inference.huggingface.co/models/${selectedModel}`;
 
   try {
-      const response = await fetch(MODEL_URL, {
-          headers: {
-              Authorization: `Bearer ${API_KEY}`,
-              "Content-Type": "application/json",
-          },
-          method: "POST",
-          body: JSON.stringify(data),
-      });
+    const response = await fetch(MODEL_URL, {
+      headers: {
+        Authorization: `Bearer ${API_KEY}`,
+        "Content-Type": "application/json",
+      },
+      method: "POST",
+      body: JSON.stringify({
+        inputs: promptText,
+        parameters: { width, height },
+        options: {},
+      }),
+    });
 
-      const result = await response.blob();
+    const result = await response.blob();
   } catch (error) {
-      console.log(error);
+    console.log(error);
   }
 };
 
-
 // Create placeholder cards with loading spinners
-const createImageCards = (selectedModel, imageCount, aspectRatio, promptText) => {
-  gridCallery.innerHTML = '';
+const createImageCards = (
+  selectedModel,
+  imageCount,
+  aspectRatio,
+  promptText
+) => {
+  gridCallery.innerHTML = "";
 
   for (let i = 0; i < imageCount; i++) {
     gridCallery.innerHTML += `<div class="img-card loading" id="img-card-${i}" style="aspect-ratio: ${aspectRatio}">
@@ -82,24 +98,25 @@ const createImageCards = (selectedModel, imageCount, aspectRatio, promptText) =>
   }
 
   generateImages(selectedModel, imageCount, aspectRatio, promptText);
-}
+};
 
 const handleFormSubmit = (e) => {
   e.preventDefault();
 
   const selectedModel = modelSelect.value;
   const imageCount = parseInt(countSelect.value) || 1;
-  const aspectRatio = ratioSelect.value || '1/1';
+  const aspectRatio = ratioSelect.value || "1/1";
   const promptText = promptInput.value.trim();
 
   createImageCards(selectedModel, imageCount, aspectRatio, promptText);
-}
+};
 
-promptBtn.addEventListener('click', () => {
-  const prompt = examplePrompts[Math.floor(Math.random() * examplePrompts.length)];
+promptBtn.addEventListener("click", () => {
+  const prompt =
+    examplePrompts[Math.floor(Math.random() * examplePrompts.length)];
   promptInput.value = prompt;
   promptInput.focus();
 });
 
-promptForm.addEventListener('submit', handleFormSubmit);
-themeToggle.addEventListener('click', toggleTheme);
+promptForm.addEventListener("submit", handleFormSubmit);
+themeToggle.addEventListener("click", toggleTheme);
